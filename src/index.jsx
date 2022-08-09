@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
-import Home from './pages/Home/Home'
-import Survey from './pages/Survey/Survey'
-import Results from './pages/Results/Results'
-import Freelances from './pages/Freelances/Freelances'
-import Header from './components/Header/Header'
-import Error from './components/Error/Error'
+import Home from './pages/Home'
+import Survey from './pages/Survey'
+import Results from './pages/Results'
+import Freelances from './pages/Freelances'
+import Header from './components/Header'
+import Error from './components/Error'
 import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`

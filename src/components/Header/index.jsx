@@ -10,6 +10,7 @@ const HomeLogo = styled.img`
 const NavContainer = styled.nav`
   padding: 30px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
 `
