@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
 import { Loader } from '../../utils/style/Atoms'
+import { SurveyContext } from '../../utils/context'
 
 const SurveyContainer = styled.div`
   display: flex;
@@ -33,13 +34,46 @@ const LoaderContainer = styled.div`
   align-items: center;
   font-size: 30px;
 `
-export default function Survey() {
+
+const ReplyBox = styled.button`
+  border: none;
+  height: 100px;
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${colors.backgroundLight};
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: ${(props) =>
+    props.isSelected ? `0px 0px 0px 2px ${colors.primary} inset` : 'none'};
+  &:first-child {
+    margin-right: 15px;
+  }
+  &:last-of-type {
+    margin-left: 15px;
+  }
+`
+
+const ReplyWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`
+
+function Survey() {
   const { questionNumber } = useParams()
   const questionNumberInt = parseInt(questionNumber)
   const prevQuestionNumber = questionNumberInt === 1 ? 1 : questionNumberInt - 1
   const nextQuestionNumber = questionNumberInt + 1
   const [questions, setQuestions] = useState({})
   const [dataLoading, setDataLoading] = useState(false)
+  // const { answers, saveAnswers } = useContext(SurveyContext)
+  // const [error, setError] = useState(false)
+
+  // function saveReply(answer) {
+  //   saveAnswers({ [questionNumber]: answer })
+  // }
+
   // Appel API
   useEffect(() => {
     setDataLoading(true)
@@ -50,8 +84,15 @@ export default function Survey() {
         setQuestions(surveyData)
         setDataLoading(false)
       })
-      .catch((error) => console.log(error))
+      .catch((error) => {
+        console.log(error)
+        // setError(true)
+      })
   }, [])
+
+  // if (error) {
+  //   return <span>Oups il y a un problème</span>
+  // }
 
   return (
     <SurveyContainer>
@@ -63,6 +104,20 @@ export default function Survey() {
       ) : (
         <QuestionContent>{questions[questionNumber]}</QuestionContent>
       )}
+      {/* <ReplyWrapper>
+        <ReplyBox
+          onClick={() => saveReply(true)}
+          isSelected={answers[questionNumber] === true}
+        >
+          Oui
+        </ReplyBox>
+        <ReplyBox
+          onClick={() => saveReply(false)}
+          isSelected={answers[questionNumber] === false}
+        >
+          Non
+        </ReplyBox>
+      </ReplyWrapper> */}
       <LinkWrapper>
         <Link to={`/survey/${prevQuestionNumber}`}>Précédent</Link>
         {questions[questionNumberInt + 1] ? (
@@ -74,3 +129,5 @@ export default function Survey() {
     </SurveyContainer>
   )
 }
+
+export default Survey

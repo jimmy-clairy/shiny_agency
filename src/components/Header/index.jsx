@@ -7,7 +7,7 @@ const HomeLogo = styled.img`
   height: 70px;
 `
 
-const NavContainer = styled.nav`
+const NavContainer = styled.header`
   padding: 30px;
   display: flex;
   flex-wrap: wrap;
@@ -21,13 +21,13 @@ function Header() {
       <Link to="/">
         <HomeLogo src={DarkLogo} />
       </Link>
-      <div>
+      <nav>
         <StyledLink to="/">Accueil</StyledLink>
         <StyledLink to="/freelances">Profils</StyledLink>
         <StyledLink to="/survey/1" $isFullLink>
           Faire le test
         </StyledLink>
-      </div>
+      </nav>
     </NavContainer>
   )
 }
