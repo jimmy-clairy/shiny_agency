@@ -10,8 +10,9 @@ const HomeWrapper = styled.div`
 
 const HomerContainer = styled.div`
   margin: 30px;
-  background-color: ${colors.background};
+  background-color: ${colors.backgroundLight};
   padding: 60px 90px;
+  border-radius: 30px;
   display: flex;
   flex-direction: row;
   max-width: 1200px;

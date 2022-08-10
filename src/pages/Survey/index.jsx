@@ -32,7 +32,7 @@ const LinkWrapper = styled.div`
 const LoaderContainer = styled.div`
   display: flex;
   align-items: center;
-  font-size: 30px;
+  font-size: 20px;
 `
 
 const ReplyBox = styled.button`
@@ -67,12 +67,12 @@ function Survey() {
   const nextQuestionNumber = questionNumberInt + 1
   const [questions, setQuestions] = useState({})
   const [dataLoading, setDataLoading] = useState(false)
-  // const { answers, saveAnswers } = useContext(SurveyContext)
-  // const [error, setError] = useState(false)
+  const { answers, saveAnswers } = useContext(SurveyContext)
+  const [error, setError] = useState(false)
 
-  // function saveReply(answer) {
-  //   saveAnswers({ [questionNumber]: answer })
-  // }
+  function saveReply(answer) {
+    saveAnswers({ [questionNumber]: answer })
+  }
 
   // Appel API
   useEffect(() => {
@@ -86,25 +86,25 @@ function Survey() {
       })
       .catch((error) => {
         console.log(error)
-        // setError(true)
+        setError(true)
       })
   }, [])
 
-  // if (error) {
-  //   return <span>Oups il y a un problème</span>
-  // }
+  if (error) {
+    return <span>Oups il y a un problème</span>
+  }
 
   return (
     <SurveyContainer>
       <QuestionTitle>Question {questionNumber}</QuestionTitle>
       {dataLoading ? (
         <LoaderContainer>
-          <Loader /> Veuillez patienter
+          <Loader />
         </LoaderContainer>
       ) : (
         <QuestionContent>{questions[questionNumber]}</QuestionContent>
       )}
-      {/* <ReplyWrapper>
+      <ReplyWrapper>
         <ReplyBox
           onClick={() => saveReply(true)}
           isSelected={answers[questionNumber] === true}
@@ -117,7 +117,7 @@ function Survey() {
         >
           Non
         </ReplyBox>
-      </ReplyWrapper> */}
+      </ReplyWrapper>
       <LinkWrapper>
         <Link to={`/survey/${prevQuestionNumber}`}>Précédent</Link>
         {questions[questionNumberInt + 1] ? (
