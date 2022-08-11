@@ -49,15 +49,17 @@ const ReplyBox = styled.button`
   box-shadow: ${(props) =>
     props.isSelected ? `0px 0px 0px 2px ${colors.primary} inset` : 'none'};
   &:first-child {
-    margin-right: 15px;
+    margin: 10px;
   }
   &:last-of-type {
-    margin-left: 15px;
+    margin: 10px;
   }
 `
 
 const ReplyWrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   flex-direction: row;
 `
 

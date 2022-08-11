@@ -17,6 +17,7 @@ root.render(
     <ThemeProvider>
       <SurveyProvider>
         <GlobalStyle />
+        <Footer />
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -25,7 +26,6 @@ root.render(
           <Route path="/freelances" element={<Freelances />} />
           <Route path="*" element={<Error />} />
         </Routes>
-        <Footer />
       </SurveyProvider>
     </ThemeProvider>
   </BrowserRouter>
