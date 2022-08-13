@@ -4,6 +4,7 @@ import colors from '../../utils/style/colors'
 import { useTheme } from '../../utils/hooks'
 import { Loader } from '../../utils/style/Atoms'
 import { useFetch } from '../../utils/hooks'
+import { Link } from 'react-router-dom'
 
 const CardsContainer = styled.div`
   display: flex;
@@ -11,6 +12,9 @@ const CardsContainer = styled.div`
   justify-content: center;
   justify-items: center;
   flex-wrap: wrap;
+`
+const StyledLink = styled(Link)`
+  text-decoration: none;
 `
 
 const PageTitle = styled.h1`
@@ -61,12 +65,16 @@ function Freelances() {
       ) : (
         <CardsContainer>
           {freelancersList.map((profile) => (
-            <Card
-              key={profile.id}
-              label={profile.job}
-              title={profile.name}
-              picture={profile.picture}
-            />
+            <StyledLink
+              key={`freelance-${profile.id}`}
+              to={`/profile/${profile.id}`}
+            >
+              <Card
+                label={profile.job}
+                title={profile.name}
+                picture={profile.picture}
+              />
+            </StyledLink>
           ))}
         </CardsContainer>
       )}

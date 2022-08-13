@@ -32,3 +32,10 @@ export const StyledLink = styled(Link)`
     border-radius: 30px; 
     background-color: ${colors.primary};`}
 `
+
+export const ErrorStyled = styled.div`
+  color: red;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 600;
+`
