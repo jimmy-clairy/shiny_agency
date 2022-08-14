@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
 import logo404 from '../../assets/404.svg'
+import { useTheme } from '../../utils/hooks'
 
 const ErrorWrapper = styled.div`
   margin: 30px;
@@ -12,11 +13,12 @@ const ErrorWrapper = styled.div`
 
 const ErrorTitle = styled.h1`
   font-weight: 300;
+  color: ${({ theme }) => (theme === 'light' ? 'black' : 'white')};
 `
 
 const ErrorSubtitle = styled.h2`
   font-weight: 300;
-  color: ${colors.secondary};
+  color: ${({ theme }) => (theme === 'light' ? 'black' : 'white')};
 `
 
 const Illustration = styled.img`
@@ -24,11 +26,12 @@ const Illustration = styled.img`
 `
 
 function Error() {
+  const { theme } = useTheme()
   return (
     <ErrorWrapper>
-      <ErrorTitle>Oups...</ErrorTitle>
+      <ErrorTitle theme={theme}>Oups...</ErrorTitle>
       <Illustration src={logo404} />
-      <ErrorSubtitle>
+      <ErrorSubtitle theme={theme}>
         Il semblerait que la page que vous cherchez n’existe pas
       </ErrorSubtitle>
     </ErrorWrapper>

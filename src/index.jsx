@@ -11,7 +11,6 @@ import Survey from './pages/Survey'
 import Results from './pages/Results'
 import Freelances from './pages/Freelances'
 import Profile from './pages/Profile'
-// import EmailInput from './components/Emailinput'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
@@ -29,7 +28,6 @@ root.render(
           <Route path="/profile/:id" element={<Profile />} />
           <Route path="*" element={<Error />} />
         </Routes>
-        {/* <EmailInput /> */}
       </SurveyProvider>
     </ThemeProvider>
   </BrowserRouter>

@@ -95,7 +95,6 @@ function Profile() {
   const [isLoadingData, setIsLoadingData] = useState(false)
   const [errorData, setErrorData] = useState(false)
   const { theme } = useTheme()
-
   const { id } = useParams()
 
   useEffect(() => {
@@ -117,18 +116,14 @@ function Profile() {
     return <ErrorStyled>Une erreur s'est produite</ErrorStyled>
   }
 
-  if (isLoadingData) {
-    return (
-      <LoaderContainer theme={theme}>
-        <Loader />
-        Veuillez patienter
-      </LoaderContainer>
-    )
-  }
-
   const { name, picture, location, job, skills, available, tjm } = freelanceData
 
-  return (
+  return isLoadingData ? (
+    <LoaderContainer theme={theme}>
+      <Loader />
+      Veuillez patienter
+    </LoaderContainer>
+  ) : (
     <ProfileWrapper theme={theme}>
       <Picture src={picture} alt={name} height={150} width={150} />
       <ProfileDetails theme={theme}>
@@ -143,7 +138,7 @@ function Profile() {
               </Skill>
             ))}
         </SkillsWrapper>
-        <Availability>
+        <Availability available={available}>
           {available ? 'Disponible maintenant' : 'Indisponible'}
         </Availability>
         <Price>{tjm} € / jour</Price>
